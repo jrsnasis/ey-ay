@@ -1,0 +1,117 @@
+{
+  "intents": [
+    {
+      "tag": "missing_customer",
+      "patterns": [
+        "No customer found",
+        "Customer not showing",
+        "Missing customer",
+        "Cannot see customer in app"
+      ],
+      "responses": [
+        "Try performing a Customer Reset in the app. Check the dim_customer table. If the customer is still missing, escalate to DW/SAP."
+      ]
+    },
+    {
+      "tag": "missing_mcp",
+      "patterns": [
+        "No MCP",
+        "MCP not uploaded",
+        "MCP missing",
+        "Cannot see MCP in app"
+      ],
+      "responses": [
+        "Check your internet connection and perform a logout/login or clear app data. Verify entries in the fct_visits table."
+      ]
+    },
+    {
+      "tag": "missing_shiptoparty",
+      "patterns": [
+        "No shiptoparty",
+        "Missing shiptoparty",
+        "Cannot see shiptoparty"
+      ],
+      "responses": [
+        "Perform a Customer Reset. Check the dim_shiptoparty table. Escalate to DW/SAP if missing."
+      ]
+    },
+    {
+      "tag": "missing_discount",
+      "patterns": [
+        "Discount not showing",
+        "No discount available",
+        "Discount missing in app"
+      ],
+      "responses": [
+        "Check that the discount is maintained. Perform a Discount Reset and verify the dim_discount table."
+      ]
+    },
+    {
+      "tag": "missing_so_number",
+      "patterns": [
+        "No sales order number",
+        "SO number missing",
+        "Cannot see SO"
+      ],
+      "responses": [
+        "Check that all integration criteria are met: finalized visit, po_num_supp, n1=1, and shiptoparty not null. Investigate errors if still missing."
+      ]
+    },
+    {
+      "tag": "dr_issue",
+      "patterns": [
+        "Available DRs cleared but still visible",
+        "DRs not updating",
+        "Payment status incorrect"
+      ],
+      "responses": [
+        "Confirm DR entries in fct_customer_dr_ar. Delays in DW update may cause this issue."
+      ]
+    },
+    {
+      "tag": "stock_inventory_issue",
+      "patterns": [
+        "Stock search shows extra plant",
+        "Stock quantity incorrect",
+        "Inventory not updated"
+      ],
+      "responses": [
+        "Resync stock data using fct_inventory and dim_t001w. Verify phased-out items in dim_mara.mstdv."
+      ]
+    },
+    {
+      "tag": "attachments_issue",
+      "patterns": [
+        "Attachments not saving",
+        "Cannot upload attachments",
+        "Attachment missing"
+      ],
+      "responses": [
+        "Skip NULL appkey entries and ensure insertAttachment() function is correctly implemented."
+      ]
+    },
+    {
+      "tag": "mcp_empty_list",
+      "patterns": [
+        "MCP list empty",
+        "Uploaded MCP not showing",
+        "Cannot see MCP after upload"
+      ],
+      "responses": [
+        "The app only syncs modified entries. Reinstall the app to force full sync."
+      ]
+    },
+    {
+      "tag": "backend_data_issue",
+      "patterns": [
+        "FSP user missing",
+        "Pending transmittals",
+        "Bank details missing",
+        "Duplicate rows in tables"
+      ],
+      "responses": [
+        "Check dim_user, dim_customer, and related mapping tables. Manual SQL updates may be required."
+      ]
+    }
+  ]
+}
