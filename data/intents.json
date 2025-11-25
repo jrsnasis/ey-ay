@@ -1,38 +1,166 @@
 {
   "intents": [
     {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "Hi there",
+        "Hello there",
+        "Hey there",
+        "Greetings",
+        "What's up",
+        "Sup",
+        "Yo"
+      ],
+      "responses": [
+        "Hello! I'm your SFA Support Assistant. How can I help you today?",
+        "Hi there! I'm here to help with your SFA concerns. What can I assist you with?",
+        "Hey! Ready to help you with any SFA issues. What do you need?",
+        "Good day! I'm your SFA chatbot assistant. What brings you here today?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you",
+        "See you later",
+        "Talk to you later",
+        "Gotta go",
+        "Take care",
+        "Catch you later",
+        "Thanks bye",
+        "That's all"
+      ],
+      "responses": [
+        "Goodbye! Feel free to reach out if you need more help with SFA.",
+        "Take care! I'm here whenever you need SFA support.",
+        "See you! Don't hesitate to come back if you have more questions.",
+        "Bye! Happy to help anytime with your SFA concerns."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Thanks a lot",
+        "Thank you so much",
+        "I appreciate it",
+        "Thanks for the help",
+        "Thank you for your help",
+        "Appreciate it",
+        "Thanks!",
+        "Tysm",
+        "Ty"
+      ],
+      "responses": [
+        "You're welcome! Happy to help!",
+        "No problem at all! Let me know if you need anything else.",
+        "Glad I could help! Feel free to ask if you have more questions.",
+        "You're welcome! I'm here anytime you need SFA support."
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Help",
+        "Can you help me",
+        "I need help",
+        "Help me",
+        "Assist me",
+        "I need assistance",
+        "Can you assist",
+        "Support"
+      ],
+      "responses": [
+        "Of course! I can help you with various SFA issues like missing customers, MCP problems, discount issues, DR concerns, and more. What specific problem are you facing?",
+        "I'm here to help! Tell me what SFA issue you're experiencing - customers, orders, collections, discounts, or something else?",
+        "Absolutely! I assist with all SFA modules. What do you need help with today?"
+      ]
+    },
+    {
+      "tag": "how_are_you",
+      "patterns": [
+        "How are you",
+        "How are you doing",
+        "How's it going",
+        "How do you do",
+        "What's up",
+        "How are things"
+      ],
+      "responses": [
+        "I'm doing great, thanks for asking! Ready to help you with any SFA issues. What can I do for you?",
+        "I'm good! More importantly, how can I help you with SFA today?",
+        "All systems running smoothly! What SFA concern can I assist you with?"
+      ]
+    },
+    {
+      "tag": "bot_identity",
+      "patterns": [
+        "Who are you",
+        "What are you",
+        "What is your name",
+        "Tell me about yourself",
+        "What do you do",
+        "Are you a bot",
+        "Are you human"
+      ],
+      "responses": [
+        "I'm your SFA Support Assistant chatbot! I'm here to help you troubleshoot and resolve issues with the Sales Force Automation system.",
+        "I'm an AI assistant specifically designed to help with SFA (Sales Force Automation) issues. I can help with missing data, sync problems, orders, collections, and more!",
+        "I'm your friendly SFA chatbot! Think of me as your first line of support for all SFA-related concerns."
+      ]
+    },
+    {
       "tag": "missing_customer",
       "patterns": [
         "No customer found",
         "Customer not showing",
-        "Missing customer",
-        "Cannot see customer in app"
+        "Missing customer data",
+        "Cannot see customer in app",
+        "Customer list is empty",
+        "Where is my customer",
+        "Customer data not syncing"
       ],
       "responses": [
-        "Try performing a Customer Reset in the app. Check the dim_customer table. If the customer is still missing, escalate to DW/SAP."
+        "I'll help you resolve this customer visibility issue. First, try performing a Customer Reset in your app. If the customer is still missing, I can check the dim_customer table using your FSP code or email. This might be a sync issue - the data could still be loading. If confirmed missing after verification, I'll escalate this to our Data Warehouse or SAP team (Ms. Bev) for immediate assistance.",
+        "Let's fix this customer issue together. Start with a Customer Reset in the app. Still not showing? The data might not have synced yet, or it could be missing from our database. I can verify this for you and escalate to the right team if needed."
       ]
     },
     {
       "tag": "missing_mcp",
       "patterns": [
-        "No MCP",
+        "No MCP showing",
         "MCP not uploaded",
-        "MCP missing",
-        "Cannot see MCP in app"
+        "MCP incomplete",
+        "Cannot see my MCP",
+        "Visit plan missing",
+        "MCP data not visible"
       ],
       "responses": [
-        "Check your internet connection and perform a logout/login or clear app data. Verify entries in the fct_visits table."
+        "It looks like your MCP (Monthly Call Plan) isn't displaying properly. This is often due to weak internet connection or incomplete sync. Please try logging out and logging back in, or clear your app data. I'll also check the fct_visits table to verify your data on the server. Note: STD = MCP and STD2 = Adhoc visits.",
+        "MCP not showing? This usually happens with connectivity issues. Try logging out/in or clearing app data. I can check if your MCP data exists on our server side too."
       ]
     },
     {
       "tag": "missing_shiptoparty",
       "patterns": [
-        "No shiptoparty",
+        "No ship-to-party",
         "Missing shiptoparty",
-        "Cannot see shiptoparty"
+        "Cannot see delivery address",
+        "Ship to party not available",
+        "Delivery location missing"
       ],
       "responses": [
-        "Perform a Customer Reset. Check the dim_shiptoparty table. Escalate to DW/SAP if missing."
+        "I see you're having trouble with ship-to-party data. Please perform a Customer Reset first. I'll check the dim_shiptoparty table using your customer code (kunnr) to verify if the data exists on our server. If the table is partially populated, our ETL job might still be running. If data is truly missing, I'll escalate this to DW or SAP (Ms. Bev) right away.",
+        "Ship-to-party missing? Start with a Customer Reset. I'll verify if the data exists in our system or if it's still loading. We'll get this sorted out quickly."
       ]
     },
     {
@@ -40,10 +168,15 @@
       "patterns": [
         "Discount not showing",
         "No discount available",
-        "Discount missing in app"
+        "Missing discount data",
+        "Cannot see customer discount",
+        "Discount not applied",
+        "Where is the discount",
+        "PVC discount missing"
       ],
       "responses": [
-        "Check that the discount is maintained. Perform a Discount Reset and verify the dim_discount table."
+        "Let me help you with the discount issue. First, perform a Discount Reset in your app. I'll then check the dim_discount table using your customer code (kunnr) to see if a discount is maintained for the specific material group. If no discount is found in our system, I'll escalate this to SAP for validation. Note: ktber = discount type, matkl = material group.",
+        "Discount not appearing? Do a Discount Reset first. I'll verify if there's a discount maintained in the system for your customer and material group."
       ]
     },
     {
@@ -51,67 +184,377 @@
       "patterns": [
         "No sales order number",
         "SO number missing",
-        "Cannot see SO"
+        "Cannot see SO",
+        "Sales order not generated",
+        "Order number not showing",
+        "Finalized but no SO"
       ],
       "responses": [
-        "Check that all integration criteria are met: finalized visit, po_num_supp, n1=1, and shiptoparty not null. Investigate errors if still missing."
+        "I understand you're not seeing an SO number for your finalized order. Let me check the integration criteria: the visit must be Finalized, po_num_supp should be 20 (integrated) or 5 (SDO offer), n1 must equal 1.00, and ship_to_party cannot be null. I'll verify these conditions in the fct_visits or fct_other_sales table. If there are error messages (especially from Tele users), I'll escalate to Sir Nino for validation. This could also mean the SAP program hasn't run yet.",
+        "SO number not generated? Let me check if all integration criteria are met - finalized status, correct po_num_supp, n1 value, and ship_to_party. It might also be that SAP processing is still pending."
       ]
     },
     {
-      "tag": "dr_issue",
+      "tag": "dr_cleared_still_visible",
       "patterns": [
-        "Available DRs cleared but still visible",
-        "DRs not updating",
-        "Payment status incorrect"
+        "DR cleared but still showing",
+        "Paid DR still in list",
+        "DR not updating after payment",
+        "Cleared delivery receipt visible",
+        "Available DRs showing cleared items"
       ],
       "responses": [
-        "Confirm DR entries in fct_customer_dr_ar. Delays in DW update may cause this issue."
+        "I'll investigate this DR status issue for you. There might be a delay in the Data Warehouse update. Let me confirm with Bry if the DR is cleared in our fct_customer_dr_ar table using the DR number. If it's cleared but still visible on mobile, I'll check if the DW has been updated. If it's not showing in DW, that confirms the DR is cleared successfully.",
+        "DR still showing after payment? This could be a DW sync delay. I'll verify the actual status in our system and ensure everything is properly updated."
       ]
     },
     {
-      "tag": "stock_inventory_issue",
+      "tag": "missing_srp",
       "patterns": [
-        "Stock search shows extra plant",
-        "Stock quantity incorrect",
-        "Inventory not updated"
+        "No SRP on item",
+        "Item price missing",
+        "SRP not showing",
+        "Cannot see suggested retail price",
+        "Price not available for material"
       ],
       "responses": [
-        "Resync stock data using fct_inventory and dim_t001w. Verify phased-out items in dim_mara.mstdv."
+        "It appears the SRP (Suggested Retail Price) for this item isn't showing. This could be due to a recent update in SAP that hasn't reflected in SFA yet. I'll verify with Ma'am Bev for SAP updates or Sir JD if this concerns the Data Warehouse.",
+        "SRP missing? This might be a recent SAP update that hasn't synced to SFA yet. I'll check with the appropriate team to get this resolved."
       ]
     },
     {
-      "tag": "attachments_issue",
+      "tag": "missing_time_entries",
       "patterns": [
-        "Attachments not saving",
-        "Cannot upload attachments",
-        "Attachment missing"
+        "Time entries missing",
+        "No time in recorded",
+        "Visit time not showing",
+        "Cannot see time in/out",
+        "Time stamps disappeared",
+        "Visit time entries gone"
       ],
       "responses": [
-        "Skip NULL appkey entries and ensure insertAttachment() function is correctly implemented."
+        "I see your time entries are missing. This often happens due to weak internet connection during sync. Please log out and log back in, or clear your app data. I'll check the fct_visits, fct_prospect, or fct_expenses table (depending on the module) to verify if the time data (t1 for Time In, t2 for Time Out) was captured on our server.",
+        "Time entries gone? Usually a sync issue due to poor connection. Try logging out/in or clearing app data. I can verify if the time data was captured on our end."
       ]
     },
     {
-      "tag": "mcp_empty_list",
+      "tag": "missing_po_number",
       "patterns": [
-        "MCP list empty",
-        "Uploaded MCP not showing",
-        "Cannot see MCP after upload"
+        "PO number missing",
+        "No PO number generated",
+        "Cannot see PO",
+        "Purchase order number not showing",
+        "FF-ABC format missing"
       ],
       "responses": [
-        "The app only syncs modified entries. Reinstall the app to force full sync."
+        "There's a known issue with PO number formatting in the mobile backend, especially for SDO offers (FF-ABC format). I'll verify all scenarios in the backend that generate PO numbers and escalate this for resolution if needed."
       ]
     },
     {
-      "tag": "backend_data_issue",
+      "tag": "adhoc_customer_timelog_issue",
       "patterns": [
-        "FSP user missing",
-        "Pending transmittals",
-        "Bank details missing",
-        "Duplicate rows in tables"
+        "Cannot log time for adhoc customer",
+        "First call adhoc customer issue",
+        "Adhoc customer not showing until MCP logged",
+        "Need to log MCP first before adhoc"
       ],
       "responses": [
-        "Check dim_user, dim_customer, and related mapping tables. Manual SQL updates may be required."
+        "This is a known bug where you can't log time for an ad-hoc customer during the first call - the option only appears after logging time for a planned visit (MCP). The customer list query has been revised to fix this issue in newer versions. Please update your app if possible."
+      ]
+    },
+    {
+      "tag": "payment_status_incorrect",
+      "patterns": [
+        "Payment status wrong",
+        "Shows delivered instead of not yet paid",
+        "DR status incorrect",
+        "Payment status not updating"
+      ],
+      "responses": [
+        "I see the payment status is displaying incorrectly. This is a data issue from the Warehousing side, not the mobile app. I need to coordinate with Sir JD to fully load the data on the backend. Once all DRs are fully loaded, you'll need to resync your app. There's no problem with the mobile display or queries."
+      ]
+    },
+    {
+      "tag": "collection_status_mismatch",
+      "patterns": [
+        "Collection status shows transmitted on mobile but for transmittal on web",
+        "Status mismatch between mobile and web",
+        "Transmitted vs for transmittal issue"
+      ],
+      "responses": [
+        "This status mismatch issue has been fixed. An additional filter for 'For transmittal' status was added to sync mobile and web displays properly."
+      ]
+    },
+    {
+      "tag": "resigned_sdo_pr_transmittal",
+      "patterns": [
+        "Cannot transmit PR for resigned SDO",
+        "Resigned employee PR stuck",
+        "PR transmittal blocked due to resignation"
+      ],
+      "responses": [
+        "This scenario wasn't included in the original module blueprint. For resigned SDO cases, we'll need to manually transmit the PR via database script. I'll handle this for you."
+      ]
+    },
+    {
+      "tag": "missing_industry_code_smart",
+      "patterns": [
+        "Cannot input SMART",
+        "Industry code missing for SMART",
+        "SMART input blocked"
+      ],
+      "responses": [
+        "The industry code exists in SAP but wasn't synced to SFA. I'll coordinate with Ma'am Bev to verify and update the data sync for you."
+      ]
+    },
+    {
+      "tag": "dr_amount_mismatch",
+      "patterns": [
+        "DR amount doesn't match",
+        "SFA and SAP DR amount different",
+        "Printed DR amount wrong",
+        "DR amount discrepancy"
+      ],
+      "responses": [
+        "There's a data discrepancy between SAP BW and DW causing this mismatch. I'll coordinate with Sir JD to verify and reconcile the data for accurate DR amounts."
+      ]
+    },
+    {
+      "tag": "missing_sales_approval",
+      "patterns": [
+        "Sales approval missing",
+        "Cannot see sales approval transactions",
+        "Sales approval not showing"
+      ],
+      "responses": [
+        "Your sales approval transactions might not have fully synced. Try a Customer Reset first, then log out and log back in, or clear your app data. I'll check the fct_sales_approval table to verify if the data exists on our server."
+      ]
+    },
+    {
+      "tag": "missing_credit_request",
+      "patterns": [
+        "Credit request missing",
+        "Cannot see credit limit transactions",
+        "Credit request not showing"
+      ],
+      "responses": [
+        "Your credit request data might not have synced properly due to weak internet connection. Please log out and log back in, or clear app data. I'll verify the fct_credit_request table for your transactions."
+      ]
+    },
+    {
+      "tag": "no_dr_records_found",
+      "patterns": [
+        "No DR records found",
+        "DR information missing",
+        "Cannot see DR details",
+        "DR header or details missing"
+      ],
+      "responses": [
+        "Let me check both the header and details tables for you. I'll first verify if a header exists in rep_dr_info_header. If there's a header, I'll check the corresponding details in rep_dr_info_details. If there's no header at all, it means no data was downloaded from the Data Warehouse - I'll verify with the DW team."
+      ]
+    },
+    {
+      "tag": "mcp_upload_approval_status",
+      "patterns": [
+        "Can approved MCP be reuploaded",
+        "Return approved status to SDO",
+        "Re-upload approved MCP",
+        "Change MCP after approval"
+      ],
+      "responses": [
+        "To return an 'Approved' MCP status back to the SDO for reuploading, I'll need to request a manual backend update from Bam or Sir Nin."
+      ]
+    },
+    {
+      "tag": "header_without_items",
+      "patterns": [
+        "Order header saved but no items",
+        "fct_other_sales has header but no fct_orders items",
+        "Booking saved without order details"
+      ],
+      "responses": [
+        "This can happen due to internet interruption during order submission, or when the header and items are inserted separately. I'll verify both fct_orders and fct_other_sales tables using the appkey to check for missing items."
+      ]
+    },
+    {
+      "tag": "new_accounts_initial_po",
+      "patterns": [
+        "Where do new account orders go",
+        "New accounts initial PO routing",
+        "NA order routing"
+      ],
+      "responses": [
+        "For new accounts, orders are routed to fct_orders where xtype = 'NA'. This helps track initial purchase orders for newly maintained accounts."
+      ]
+    },
+    {
+      "tag": "intermittent_unified_booking",
+      "patterns": [
+        "Unified booking not working consistently",
+        "Intermittent booking issue",
+        "Sometimes unified booking fails"
+      ],
+      "responses": [
+        "This could be due to intermittent connection issues. I'll validate the order item counts by checking fct_orders items (mtnr field) against fct_other_sales to ensure data consistency."
+      ]
+    },
+    {
+      "tag": "old_past_due_checking",
+      "patterns": [
+        "How to check old past due",
+        "What is old past due",
+        "DR past due calculation",
+        "60+ days past due"
+      ],
+      "responses": [
+        "I can help you check old past due records. Old past due means DRs that are 60+ days past their due date. I'll run a query on fct_customer_dr_ar that calculates: NOT DUE YET (negative days), DUE TODAY (0 days), PAST DUE 1-30 days, PAST DUE 31-60 days, and OLD PAST DUE (60+ days). The query checks where clr_doc_no = 0 and ar_tag = 'O'."
+      ]
+    },
+    {
+      "tag": "collection_receiving_not_showing",
+      "patterns": [
+        "PR not appearing in collection receiving",
+        "Cannot see PR in receiving",
+        "PR missing from collection receiving"
+      ],
+      "responses": [
+        "This might be due to a missing re-sync flag on your mobile device. Please ask Tele to transmit again, then re-sync your device. I'll also check if the DR is properly opened in the system (ar_tag = O, clr_doc_no = 0, is_inputted = blank). If it's open but not visible, I'll escalate to Sir JD."
+      ]
+    },
+    {
+      "tag": "clearing_document_check",
+      "patterns": [
+        "Check clearing document",
+        "Verify clearing document status",
+        "Is clearing document processed"
+      ],
+      "responses": [
+        "For recent transactions, please note that BW (Business Warehouse) processes data with a 2-hour interval. I'll check the BW system for status or any processing delays."
+      ]
+    },
+    {
+      "tag": "dr_inquiry_setup_request",
+      "patterns": [
+        "Setup DR inquiry for my account",
+        "Need DR inquiry data",
+        "DR inquiry not working for my customer"
+      ],
+      "responses": [
+        "I can help set up DR inquiry data for your account. The system shows DRs from the last 2 months (based on dr_date). I'll check rep_dr_visibility_bw for the summary, rep_dr_info_header for DR headers, rep_dr_info_details for item details, and dim_customer to verify customer assignment. If data needs to be manually created, I'll handle that for you."
+      ]
+    },
+    {
+      "tag": "can_finalize_with_old_pd",
+      "patterns": [
+        "Can I finalize order with old past due",
+        "Old past due blocking finalization",
+        "Customer has old PD can I finalize"
+      ],
+      "responses": [
+        "No, the app cannot finalize an order if the customer has an old past due (has_past_due = 2). The validation checks in this order: BLOCKED (is_blocked = 1), HAS_PD (has_past_due = 1), HAS_OLD_PD (has_past_due = 2). You must resolve the old past due before finalizing."
+      ]
+    },
+    {
+      "tag": "po_attachment_overwrite",
+      "patterns": [
+        "Can I overwrite PO attachment",
+        "Replace attachment 1",
+        "Which attachments can be edited",
+        "PO returned need to change attachment"
+      ],
+      "responses": [
+        "Yes, if an SSA returns a booking transaction via the PO attachment module, you CAN overwrite attachment 1. Attachments 2-10 are also editable. To verify uploaded images, I can check the fct_image_validation table."
+      ]
+    },
+    {
+      "tag": "partial_dr_inquiry",
+      "patterns": [
+        "Check partial DR",
+        "Customer has partial delivery",
+        "Show partial DRs for customer"
+      ],
+      "responses": [
+        "I'll check for partial DRs by querying fct_customer_dr_ar where ar_tag = 'P' joined with dim_customer. This will show all customers with partial delivery receipts."
+      ]
+    },
+    {
+      "tag": "is_unified_null_bug",
+      "patterns": [
+        "is_unified field is NULL",
+        "Unified booking flag missing",
+        "NULL in is_unified column"
+      ],
+      "responses": [
+        "This was a bug where is_unified became NULL during updates. We've added validation when updating fct_other_sales or fct_visits to prevent is_unified from being set to NULL. This should no longer occur in the latest version."
+      ]
+    },
+    {
+      "tag": "data_import_manual",
+      "patterns": [
+        "How to import data manually",
+        "Manual data import to SFA",
+        "Load data to database",
+        "CSV import to database"
+      ],
+      "responses": [
+        "For manual data import to SFA DB, I recommend using DBeaver IDE (modern) instead of MySQL Workbench. Here's the process: 1) Check column constraints (NOT NULL, etc.) and use Default/Expression if needed. 2) For blank values, fill with 'NULL' if necessary. 3) Remove unused columns for faster import. 4) Use table column names in your sheet for easy alignment. For large datasets (250k+ rows), import in batches of 50-100k rows. Steps: Right-click table → Import Data → Select CSV → Map columns (use DELETE to skip) → Configure settings → Proceed."
+      ]
+    },
+    {
+      "tag": "transport_deployment",
+      "patterns": [
+        "How to create transport request",
+        "Deployment process",
+        "Create ticket for deployment",
+        "Transport to production"
+      ],
+      "responses": [
+        "Here's the transport process: 1) Create MOP (Method of Procedure). 2) Create ticket at https://help.fireflyelectric.com/support/catalog/items/214. 3) Get approval from Process Owner. 4) Validation by Sir JD. 5) Approval by Sir Mo. 6) Post in 'Deployment GC' with format: <Greeting> <Reason>, MOP Link, Ticket No: #SR-####, Timing, Created by, Validated by: Sir JD, Approved by: Sir Mo, Reference Ticket No. CC @Moses @JD Regoso @Jake Bustamante."
+      ]
+    },
+    {
+      "tag": "data_modification_request",
+      "patterns": [
+        "Need to modify collection data",
+        "Update pending transmittals",
+        "Change data for resigned SDO",
+        "Manual data update needed"
+      ],
+      "responses": [
+        "For data modification requests (especially for resigned SDOs with pending transmittals), I'll need to verify if the sync to cloud was completed first. If confirmed, I can manually update the status to 'Transmitted' with the current timestamp. Please provide the appkey for the specific transaction."
+      ]
+    },
+    {
+      "tag": "general_troubleshooting",
+      "patterns": [
+        "App not working",
+        "SFA error",
+        "Something wrong with app",
+        "App crashing",
+        "Data not syncing"
+      ],
+      "responses": [
+        "I'm here to help troubleshoot your SFA issue. Could you please provide more details about what's happening? For example: Which module are you using (Visit Management, CT Sales, Collection, etc.)? What specific error or issue are you seeing? When did this start happening? This will help me provide you with the most accurate solution.",
+        "Let's figure this out together! Can you tell me more about the issue? What module are you in and what exactly is happening?"
       ]
     }
-  ]
+  ],
+  "metadata": {
+    "version": "2.0",
+    "last_updated": "2025-01-24",
+    "features": [
+      "Conversational patterns (greetings, thanks, goodbye)",
+      "Multiple response variations for natural conversation",
+      "Removed context and query_template fields",
+      "Enhanced user experience with friendly bot responses"
+    ],
+    "escalation_contacts": {
+      "sap": "Ms. Bev",
+      "data_warehouse": "Sir JD",
+      "backend_updates": "Bam, Sir Nin",
+      "validation": "Sir Nino",
+      "approvals": "Sir Mo",
+      "deployment": "Sir Jake"
+    }
+  }
 }
