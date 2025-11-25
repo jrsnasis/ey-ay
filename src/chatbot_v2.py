@@ -59,7 +59,7 @@ class ChatbotV2:
     def __init__(self, model_path="data/processed/chatbot_model.pth"):
         """Initialize chatbot"""
         logger.info("=" * 60)
-        logger.info("Initializing Chatbot V2 (Database-Powered)")
+        logger.info("Initializing Chatbot V2")
         logger.info("=" * 60)
 
         # Generate unique session ID
