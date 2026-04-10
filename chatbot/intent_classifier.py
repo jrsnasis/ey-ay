@@ -1,4 +1,4 @@
-# ey-ay/models/intent_classifier.py
+# chatbot/intent_classifier.py
 
 """
 Intent Classifier Neural Network

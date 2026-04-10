@@ -16,8 +16,11 @@ from database.operations import (
 from models.intent_classifier import IntentClassifier
 
 # Add project root to path
-project_root = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, project_root)
+
+# Ensure logs directory exists
+os.makedirs(os.path.join(project_root, "logs"), exist_ok=True)
 
 # Download required NLTK data
 try:
@@ -28,10 +31,11 @@ except LookupError:
 stemmer = PorterStemmer()
 
 # Configure logging
+log_path = os.path.join(project_root, "logs", "chat.log")
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("logs/chat.log"), logging.StreamHandler()],
+    handlers=[logging.FileHandler(log_path), logging.StreamHandler()],
 )
 
 logger = logging.getLogger(__name__)
@@ -56,11 +60,14 @@ def bag_of_words(tokenized_sentence, vocabulary):
 
 class ChatbotV2:
 
-    def __init__(self, model_path="data/processed/chatbot_model.pth"):
+    def __init__(self, model_path=None):
         """Initialize chatbot"""
         logger.info("=" * 60)
         logger.info("Initializing Chatbot V2 (Database-Powered)")
         logger.info("=" * 60)
+
+        if model_path is None:
+            model_path = os.path.join(project_root, "data", "processed", "chatbot_model.pth")
 
         # Generate unique session ID
         self.session_id = str(uuid.uuid4())[:8]
@@ -137,7 +144,7 @@ class ChatbotV2:
             response = get_random_response(intent)
 
             if not response:
-                logger.warning(f"No responses found in database for: {intent}")
+                logger.warning(f"No responses found for intent: {intent}")
                 response = "I understand, but I don't have a response for that yet."
         else:
             logger.warning(
